@@ -20,6 +20,7 @@ export function netUpload(token, net_url) {
   const imgData = {
     net_url
   };
+
   return fetch({
     url: '/qiniu/upload/net/async',
     method: 'post',

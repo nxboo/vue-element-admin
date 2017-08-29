@@ -1,10 +1,13 @@
 <template>
-  <el-breadcrumb class="app-levelbar" separator="/">
-    <el-breadcrumb-item v-for="(item,index)  in levelList" :key="item">
-      <router-link v-if='item.redirect==="noredirect"||index==levelList.length-1' to="" class="no-redirect">{{item.name}}</router-link>
-      <router-link v-else :to="item.path">{{item.name}}</router-link>
-    </el-breadcrumb-item>
-  </el-breadcrumb>
+  <div>
+    <el-breadcrumb class="app-levelbar" separator="/">
+      <el-breadcrumb-item v-for="(item,index) in levelList" :key="item">
+        <router-link v-if='item.redirect==="noredirect"||index==levelList.length-1' to="" class="no-redirect">{{item.name}}</router-link>
+        <router-link v-else :to="item.path">{{item.name}}</router-link>
+      </el-breadcrumb-item>
+    </el-breadcrumb>
+    <h1>{{levelList[levelList.length-1].name}}</h1>
+  </div>
 </template>
 
 <script>
@@ -24,6 +27,7 @@
           if (first && (first.name !== '首页' || first.path !== '')) {
             matched = [{ name: '首页', path: '/' }].concat(matched)
           }
+          console.log(matched);
           this.levelList = matched;
         }
       },
@@ -35,14 +39,22 @@
     }
 </script>
 <style rel="stylesheet/scss" lang="scss" scoped>
+
     .app-levelbar.el-breadcrumb {
         display: inline-block;
         font-size: 14px;
-        line-height: 50px;
-        margin-left: 10px;
+        line-height: 30px;
+        margin: 10px 20px 0 20px;
         .no-redirect{
           color: #97a8be;
           cursor:text;
         }
+    }
+
+    h1{
+      font-size: 2.5em;
+      margin: 10px 20px 0 20px;
+      color:#000;
+      font-weight: normal;
     }
 </style>

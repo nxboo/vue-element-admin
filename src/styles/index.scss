@@ -1,11 +1,14 @@
 @import './btn.scss';
 @import './element-ui.scss';
 @import "./mixin.scss";
+
 body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+  background: #e4e5e6;
+  color: #4d4d4d;
 }
 
 label {
@@ -100,17 +103,18 @@ code {
 .app-container {
   padding: 20px;
 }
+
 .components-container {
   margin: 30px 50px;
   position: relative;
 }
+
 .pagination-container {
   margin-top: 30px;
 }
 
-
 .editor-container .CodeMirror {
-  height: 100%!important;
+  height: 100% !important;
 }
 
 .wscn-icon {
@@ -197,7 +201,7 @@ code {
   .el-checkbox {
     margin: 0 20px 15px 0;
   }
-  .el-checkbox+.el-checkbox {
+  .el-checkbox + .el-checkbox {
     margin-left: 0px;
   }
 }
@@ -210,7 +214,6 @@ code {
     margin-bottom: 10px;
   }
 }
-
 
 //refine vue-multiselect plugin
 .multiselect {
@@ -249,7 +252,7 @@ code {
   }
 }
 
-@media (max-width:500px) {
+@media (max-width: 500px) {
   .github-corner:hover .octo-arm {
     animation: none
   }
@@ -257,3 +260,88 @@ code {
     animation: octocat-wave 560ms ease-in-out
   }
 }
+
+.card-container{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border: 1px solid #cfd8dc;
+  padding: 20px 20px 0 20px;
+  margin-bottom: 20px;
+}
+
+.card-container .el-row{
+  margin-bottom: 15px!important;
+}
+
+.card-container .el-row .el-col{
+  margin-bottom: 5px;
+}
+
+.edit-form{
+  border-top-width: 4px;
+  border-top-color: #536e8a;
+}
+
+.edit-label{
+  line-height: 36px;
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .edit-label{
+    line-height: 36px;
+    text-align: left;
+  }
+}
+
+
+
+.edit-help{
+  line-height: 36px;
+  color: #9c9c9c;
+
+  em{
+    color: #99302b;
+    //font-weight: bold;
+    font-style: normal;
+  }
+}
+
+.edit-footer{
+  background-color: #f7f8fa;
+  border-width: 1px 0 0 0;
+  border-style: solid;
+  border-color: #d2d3d6;
+  margin-left: -20px;
+  margin-right: -20px;
+  margin-top: 20px;
+  padding: 30px 20px;
+  color: #000;
+  button{
+    width: 15%;
+  }
+}
+
+.el-button.philm-option{
+  border-radius: 50%;
+  width: 2.1rem;
+  height: 2.1rem;
+  padding: 0;
+  line-height: 2rem;
+  text-align: center;
+  border-color:transparent;
+  background: transparent;
+  margin: 0;
+}
+
+.philm-option:hover{
+  //border: 1px solid #000!important;
+}
+
+.el-table .cell, .el-table th>div{
+  padding-left: 8px;
+  padding-right: 8px;
+}
+

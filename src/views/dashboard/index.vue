@@ -8,12 +8,13 @@
     import { mapGetters } from 'vuex';
     import EditorDashboard from './editor/index';
     import DefaultDashboard from './default/index';
+    import StatDashboard from './stat/index';
     export default {
       name: 'dashboard',
-      components: { EditorDashboard, DefaultDashboard },
+      components: { EditorDashboard, DefaultDashboard, StatDashboard },
       data() {
         return {
-          currentRole: 'EditorDashboard'
+          currentRole: 'StatDashboard'
         }
       },
       computed: {
@@ -33,7 +34,7 @@
         // if (!isEditor) {
         //   this.currentRole = 'DefaultDashboard';
         // }
-        this.currentRole = 'DefaultDashboard';
+        this.currentRole = 'StatDashboard';
       }
     }
 </script>

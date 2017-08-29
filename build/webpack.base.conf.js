@@ -77,6 +77,12 @@ module.exports = {
             }
         ]
     },
+    node: {
+        fs: 'empty',
+        net: 'empty',
+        tls: 'empty',
+        'crypto': 'empty'
+    }
     //注入全局mixin
     // sassResources: path.join(__dirname, '../src/styles/mixin.scss'),
     // sassLoader: {
