@@ -196,6 +196,16 @@ export default new Router({
                 {path: 'test', component: DictEventTest, name: 'test'}
             ]
         }, {
+          path: '/data_source',
+          component: Layout,
+          redirect: 'noredirect',
+          name: '数据源',
+          icon: 'database',
+          noDropdown: true,
+          children: [
+              {path: 'report/:type/:cmd', component: resolve => require(['../views/data_source/report'], resolve), name: '数据报表'},
+          ]
+      }, {
             path: '/theme',
             component: Layout,
             redirect: 'noredirect',

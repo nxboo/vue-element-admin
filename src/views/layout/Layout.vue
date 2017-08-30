@@ -1,10 +1,10 @@
 <template>
-  <div class="app-wrapper" :class="{hideSidebar:!sidebar.opened}">
+  <div class="app-wrapper" :class="{hideSidebar:!sidebar.opened, rightPanelOpened:layout.rightPanel}">
     <div class="sidebar-wrapper">
-      <Sidebar class="sidebar-container" />
+      <Sidebar />
     </div>
     <div class="main-container">
-      <Navbar/>
+      <Navbar />
       <div class="top" v-if="!this.$route.matched[0].meta.hideLevelbar">
         <levelbar></levelbar>
       </div>
@@ -80,19 +80,9 @@
     width: 100%;
     padding-left: 220px;
     &.hideSidebar {
-      padding-left: 40px;
+      padding-left: 64px;
       .sidebar-wrapper {
-        transform: translate(-180px, 0);
-        .sidebar-container {
-          transform: translate(172px, 0);
-        }
-        &:hover {
-          transform: translate(0, 0);
-          z-index: 1001;
-          .sidebar-container {
-            transform: translate(0, 0);
-          }
-        }
+        width: 64px;
       }
     }
     .sidebar-wrapper {
@@ -101,38 +91,56 @@
       top: 0;
       bottom: 0;
       left: 0;
+      height: 100%;
       z-index: 2;
-      overflow-x: hidden;
-      transition: all .28s ease-out;
       @include scrollBar;
     }
-    .sidebar-container {
-      transition: all .28s ease-out;
-    }
+
     .main-container {
       width: 100%;
       min-height: 100%;
-      transition: all .28s ease-out;
+      /* transition: all .28s ease-out; */
 
       h1 {
         font-size: 3em;
         margin: 0 .2em .2em .2em;
       }
     }
+
+    .right-wrapper {
+      background: #324157;
+      width: 360px;
+      position: fixed;
+      top: 50px;
+      bottom: 0;
+      right: 0;
+      z-index: 1000000;
+      overflow-x: hidden;
+      @include scrollBar;
+    }
+
+    &.rightPanelOpened {
+      .navbar {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 220px;
+        z-index: 1000;
+      }
+
+      .main-container{
+        margin-top: 50px;
+      }
+    }
+
+    &.rightPanelOpened.hideSidebar {
+      .navbar {
+        left: 64px;
+      }
+    }
   }
 
-  .right-wrapper {
-    background: #324157;
-    width: 360px;
-    position: fixed;
-    top: 50px;
-    bottom: 0;
-    right: 0;
-    z-index: 1000000;
-    overflow-x: hidden;
-    transition: all .28s ease-out;
-    @include scrollBar;
-  }
+
 
   .hide {
     display: none;
