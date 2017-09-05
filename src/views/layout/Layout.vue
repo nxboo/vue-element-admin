@@ -8,7 +8,7 @@
       <div class="top" v-if="!this.$route.matched[0].meta.hideLevelbar">
         <levelbar></levelbar>
       </div>
-      <App-main/>
+      <App-main />
     </div>
     <div class="right-wrapper" :class="{hide:layout.rightPanel==''}">
       <Msg v-if="layout.rightPanel=='Msg'" />
@@ -87,7 +87,7 @@
     }
     .sidebar-wrapper {
       width: 220px;
-      position: fixed;
+      position: absolute;
       top: 0;
       bottom: 0;
       left: 0;
@@ -129,7 +129,7 @@
       }
 
       .main-container{
-        margin-top: 50px;
+        padding-top: 50px;
       }
     }
 

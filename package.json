@@ -6,6 +6,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "start": "node build/dev-server.js",
     "dev": "node build/dev-server.js",
     "build:prod": "cross-env NODE_ENV=production node build/build.js",
     "build:sit": "cross-env NODE_ENV=sit node build/build.js",

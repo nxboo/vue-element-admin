@@ -20,6 +20,7 @@ import 'vue-multiselect/dist/vue-multiselect.min.css';
 import vueWaves from './directive/waves';
 import vueSticky from './directive/sticky';
 import errLog from 'store/errLog';
+import PhilmIcon from './components/Icon-svg/philm-icon';
 // import './mock/index.js';  //使用api请求时请将此行注释，不然将被mock拦截
 // import './styles/mixin.scss';
 
@@ -34,6 +35,7 @@ Vue.component('Sticky', Sticky);
 Vue.use(ElementUI);
 Vue.use(vueWaves);
 Vue.use(vueSticky);
+Vue.component('philm-icon', PhilmIcon);
 
 
 // register global utility filters.

@@ -52,4 +52,9 @@
 
 <style lang="scss" scoped>
 
+.philm-font{
+  display: inline-block;
+  margin: 0 5px;
+}
+
 </style>

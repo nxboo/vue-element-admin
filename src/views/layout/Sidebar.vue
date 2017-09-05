@@ -3,7 +3,7 @@
       <template v-for="cat in disignMenus">
         <el-submenu :index="cat.design_cat_id">
           <template slot="title">
-              <philm-icon :icon="cat.icon"></philm-icon>&nbsp;&nbsp;<span slot="title"> {{cat.name}}</span>
+              <philm-icon :icon="cat.icon"></philm-icon>&nbsp;&nbsp;<span slot="title">{{cat.name}}</span>
           </template>
           <router-link v-for="design in cat.designs" :key="design.design_id" class="title-link" :to="'/stat/'+design.design_id">
             <el-menu-item :index="'/stat/'+design.design_id">
@@ -16,7 +16,7 @@
       <template v-for="item in permissionRoutes" v-if="!item.hidden">
           <el-submenu :index="item.name" v-if="!item.noDropdown">
             <template slot="title">
-              {{item.name}}
+              <philm-icon :icon="item.icon"></philm-icon>&nbsp;&nbsp;<span slot="title">{{item.name}}</span>
             </template>
             <router-link v-for="child in item.children" :key="child.path" v-if="!child.hidden" class="title-link" :to="item.path+'/'+child.path">
               <el-menu-item :index="item.path+'/'+child.path">
@@ -26,7 +26,7 @@
           </el-submenu>
           <router-link v-if="item.noDropdown&&item.children.length>0" :to="item.path+'/'+item.children[0].path">
             <el-menu-item :index="item.path+'/'+item.children[0].path">
-              <wscn-icon-svg :icon-class="item.icon||'geren1'" /> {{item.children[0].name}}
+              {{item.children[0].name}}
             </el-menu-item>
           </router-link>
         </template>

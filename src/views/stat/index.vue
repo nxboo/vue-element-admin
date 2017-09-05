@@ -120,6 +120,8 @@
         listLoading: true,
         reportId: 0,
 
+        info: {},
+
         groupBy: 'stat_time',
         groupByName: '日期',
 
@@ -198,6 +200,8 @@
         })
       },
       handleSearch() {
+
+
         this.listLoading = true;
 
         getData(this.reportId, this.search, this.groupBy).then(response => {
@@ -205,6 +209,18 @@
 
           this.cols = response.data.items;
           this.list = response.data.data;
+          this.info = response.data.report;
+
+          this.$store.dispatch('setPageInfo', {
+            title: `${this.info.name} - ${this.groupByName}`,
+            desc: this.info.desc,
+            type: this.info.type,
+            breadcrumb: [
+              { name: '首页', to: '/' },
+              { name: this.info.cat_name },
+              { name: this.info.name }
+            ]
+          });
 
           setTimeout(() => {
             let legend = [];

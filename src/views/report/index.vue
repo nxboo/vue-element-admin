@@ -4,113 +4,40 @@
 
     <div class="card-container">
       <el-row :gutter="20" style="margin-bottom: 20px;">
-        <!--<el-col :md="4">-->
-        <!--<el-date-picker-->
-        <!--style="width: 100%"-->
-        <!--v-model="value"-->
-        <!--type="daterange"-->
-        <!--align="right"-->
-        <!--range-separator=" ~ "-->
-        <!--placeholder="选择日期范围"-->
-        <!--:picker-options="datePicker">-->
-        <!--</el-date-picker>-->
-        <!--</el-col>-->
-        <el-col :md="4">
-          <el-select v-model="category" style="width: 100%" clearable filterable placeholder="请选择类别">
-            <el-option v-for="(name, key) in categoryOptions" :key="key" :label="name" :value="key">
-            </el-option>
-          </el-select>
-        </el-col>
-
-        <el-col :md="4">
-          <el-select v-model="versionIos" style="width: 100%" clearable filterable placeholder="请选择Android版本">
-            <el-option v-for="(name, key) in versionIosOptions" :key="key" :label="name" :value="key">
-            </el-option>
-          </el-select>
-        </el-col>
-
-        <el-col :md="4">
-          <el-select v-model="versionAndroid" style="width: 100%" clearable filterable placeholder="请选择Ios版本">
-            <el-option v-for="(name, key) in versionAndroidOptions" :key="key" :label="name" :value="key">
-            </el-option>
-          </el-select>
-        </el-col>
 
         <el-col :md="6">
-          <el-input style="width: 100%" placeholder="事件编号/名称/注释" v-model="keyword">
+          <el-input style="width: 100%" placeholder="名称" v-model="keyword">
           </el-input>
         </el-col>
-        <!--<el-col :md="3">-->
-        <!--<el-input-number style="width: 100%" v-model="num1" @change="handleChange" :min="1" :max="20"></el-input-number>-->
-        <!--</el-col>-->
-        <!--<el-col :md="3">-->
-        <!--<el-button type="primary" icon="document" @click="handleDownload">-->
-        <!--导出excel-->
-        <!--</el-button>-->
-        <!--</el-col>-->
+
         <el-col :md="3">
           <el-button type="primary" style="width: 100%" @click="search">
             <philm-icon icon="search" size="small"></philm-icon>&nbsp;&nbsp;搜索
           </el-button>
         </el-col>
+
       </el-row>
     </div>
 
     <el-table :data="list" v-loading.body="listLoading" element-loading-text="加载中" stripe highlight-current-row sortable>
 
-      <el-table-column label="事件编号" :sortable="true" prop="cmd" width="120">
-      </el-table-column>
-
-      <el-table-column label="类别" width="120" prop="category">
-      </el-table-column>
-
-      <el-table-column label="事件名称" width="200">
-        <template scope="scope">
-          <span>{{scope.row.event_name}}</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column label="Android版本" prop="version_android" width="140">
-      </el-table-column>
-
-      <el-table-column label="Ios版本" width="120" prop="version_ios">
-      </el-table-column>
-
-      <el-table-column label="注释">
-        <template scope="scope">
-          {{scope.row.event_desc}}
-        </template>
-      </el-table-column>
-
-      <el-table-column label="更新时间" sortable width="150" align="right">
-        <template scope="scope">
-          {{scope.row.modify_time}}
-        </template>
-      </el-table-column>
+      <el-table-column label="ID" :sortable="true" prop="cat_id" width="80"></el-table-column>
+      <el-table-column label="名称" prop="name"></el-table-column>
+      <el-table-column label="添加人" width="120" prop="staff_name"></el-table-column>
+      <el-table-column label="添加时间" width="120" prop="create_time"></el-table-column>
+      <el-table-column label="序号" width="120" prop="seq"></el-table-column>
 
       <el-table-column :render-header="addOption" align="center" prop="created_at" label="操作" width="180">
         <template scope="scope">
 
-          <!--<router-link :to="{ path: 'edit/'+scope.row.cmd}">-->
-          <!--<el-tooltip class="item" effect="dark" content="修改1" placement="top">-->
-          <!--<philm-icon icon="pencil2"></philm-icon>-->
-          <!--</el-tooltip>-->
-          <!--</router-link>-->
-
-          <el-tooltip class="item" effect="dark" content="数据" placement="top">
-              <el-button type="info" :plain="true" class="philm-option" @click="report(scope.row.cmd)">
-                <philm-icon icon="tongji3"></philm-icon>
-              </el-button>
-          </el-tooltip>
-
           <el-tooltip class="item" effect="dark" content="修改" placement="top">
-            <el-button type="info" :plain="true" class="philm-option" @click="edit(scope.row.cmd)">
+            <el-button type="info" :plain="true" class="philm-option" @click="edit(scope.row.cat_id)">
               <philm-icon icon="pencil2"></philm-icon>
             </el-button>
           </el-tooltip>
 
           <el-tooltip class="item" effect="dark" content="删除" placement="top">
-            <el-button type="danger" :plain="true" class="philm-option" @click="del(scope.row.cmd)">
+            <el-button type="danger" :plain="true" class="philm-option" @click="del(scope.row.cat_id)">
               <philm-icon icon="bin"></philm-icon>
             </el-button>
           </el-tooltip>
