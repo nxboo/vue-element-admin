@@ -8,21 +8,10 @@ export default function _fetch(options) {
     const instance = axios.create({
       baseURL: process.env.BASE_API,
       timeout: 1000,
-      headers: { 'X-Ivanka-Token': store.getters.token },
-      transformRequest: [
-        function (data) {
-          let ret = ''
-          for (let it in data) {
-            ret += encodeURIComponent(it) +
-              '=' +
-              encodeURIComponent(data[it]) +
-              '&'
-          }
-          console.log(ret);
-          return ret
-        }
-      ],
+      headers: { 'X-Ivanka-Token': store.getters.token }
     });
+
+
     instance(options)
       .then(response => {
         const res = response.data;
@@ -93,8 +82,22 @@ export function fetch(options) {
       headers: {
         // 'Content-Type': 'application/x-www-form-urlencoded',
         'X-Ivanka-Token': store.getters.token
-      }
+      },
+
+
+      transformRequest: [function transformRequest(data, headers) {
+        if(typeof data=="object"){
+          headers['content-type'] = 'application/x-www-form-urlencoded;charset=utf-8';
+          let keys2 = Object.keys(data);
+          /* 这里就是把json变成url形式，并进行encode */
+          return encodeURI(keys2.map(name => `${name}=${data[name]}`).join('&'));
+        }
+        return data;
+       }]
     });
+
+
+    // instance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
     instance(options)
       .then(response => {

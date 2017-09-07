@@ -5,12 +5,12 @@
                  class="card-box login-form">
             <h3 class="title">Philm Admin</h3>
             <el-form-item prop="email">
-                <span class="svg-container"><philm-icon icon="user"></philm-icon></span>
+                <philm-icon icon="user" style="color:#FFF; margin-left:10px;"></philm-icon>
                 <el-input name="username" type="text" v-model="loginForm.username" autoComplete="on"
                           placeholder="用户名"></el-input>
             </el-form-item>
             <el-form-item prop="password">
-                <span class="svg-container"><philm-icon icon="key2"></philm-icon></span>
+                <philm-icon icon="key2" style="color:#FFF; margin-left:10px;"></philm-icon>
                 <el-input name="password" type="password" @keyup.enter.native="handleLogin" v-model="loginForm.password"
                           autoComplete="on" placeholder="密码"></el-input>
             </el-form-item>

@@ -106,10 +106,11 @@ export default new Router({
       component: Layout,
       redirect: 'noredirect',
       name: '报表',
-      icon: 'database',
+      icon: 'table',
       noDropdown: false,
       children: [
-        { path: '', component: resolve => require(['../views/report/cat'], resolve), name: '报表管理' },
+        { path: '', component: resolve => require(['../views/report/index'], resolve), name: '报表管理' },
+        { path: 'edit/:reportId?', component: resolve => require(['../views/report/edit'], resolve), name: '添加/修改报表' },
         { path: 'cat', component: resolve => require(['../views/report/cat'], resolve), name: '分类管理' },
         { path: 'cat/edit/:catId?', hidden: true, component: resolve => require(['../views/report/cat_edit'], resolve), name: '添加/修改埋点' },
       ]

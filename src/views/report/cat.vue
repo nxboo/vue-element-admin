@@ -27,7 +27,7 @@
       </el-table-column>
       <el-table-column label="添加人" width="120" prop="staff_name"></el-table-column>
       <el-table-column label="添加时间" :sortable="true" width="150" prop="create_time"></el-table-column>
-      <el-table-column label="序号" :sortable="true" width="80" prop="seq"></el-table-column>
+      <el-table-column label="序号" :sortable="true" :sort-method="intSort" width="80" prop="seq"></el-table-column>
 
       <el-table-column :render-header="addOption" align="center" prop="created_at" label="操作" width="180">
         <template scope="scope">
@@ -111,6 +111,10 @@ export default {
       }).catch(() => {
 
       });
+    },
+    intSort: function(a,b){
+      console.log(arguments);
+      return parseInt(a.seq,10)>parseInt(b.seq,10);
     }
   }
 };
