@@ -23,10 +23,10 @@
       </el-col>
     </el-row>
 
-    <el-row :gutter="20" class="top-card">
+    <el-row :gutter="20">
       <el-col :md="8" :sm="24">
         <div class="card-container">
-          版本分布
+          <div class="title">版本分布</div>
           <el-table
             :data="versionData"
             stripe
@@ -47,12 +47,44 @@
       </el-col>
       <el-col :md="8" :sm="24">
         <div class="card-container">
-          国家分布
+          <div class="title">国家分布</div>
+          <el-table
+            :data="countryData"
+            stripe
+            style="width: 100%">
+            <el-table-column
+              prop="key"
+              label="版本">
+            </el-table-column>
+            <el-table-column
+              prop="value"
+              label="占比">
+              <template scope="scope">
+              <el-progress text-inside="true" :stroke-width="18" :percentage="scope.row.value"></el-progress>
+              </template>
+            </el-table-column>
+          </el-table>
         </div>
       </el-col>
       <el-col :md="8" :sm="24">
         <div class="card-container">
-          设备分布
+          <div class="title">设备分布</div>
+          <el-table
+            :data="versionData"
+            stripe
+            style="width: 100%">
+            <el-table-column
+              prop="key"
+              label="版本">
+            </el-table-column>
+            <el-table-column
+              prop="value"
+              label="占比">
+              <template scope="scope">
+              <el-progress text-inside="true" :stroke-width="18" :percentage="scope.row.value"></el-progress>
+              </template>
+            </el-table-column>
+          </el-table>
         </div>
       </el-col>
     </el-row>
@@ -119,6 +151,7 @@ export default {
         },
       ],
       versionData:[],
+      countryData:[],
       list: [],
       datePicker: {
         shortcuts: [{
@@ -224,8 +257,19 @@ export default {
           })
          }, []);
          data = _.orderBy(data, ['value'], ['desc']);
-         console.log(this.getTop20(data));
          this.versionData = this.getTop20(data);
+      });
+
+      getSourceCol('cmd', '20002', 'device_count', 'country', { date }).then(response => {
+         let data = response.data;
+         data = _.transform(data, (result, value, key)=>{
+          result.push({
+            key: key,
+            value: parseInt(value,10),
+          })
+         }, []);
+         data = _.orderBy(data, ['value'], ['desc']);
+         this.countryData = this.getTop20(data);
       });
 
 
@@ -265,8 +309,8 @@ export default {
   }
 }
 
-.el-progress-bar .el-progress-bar__innerText{
-  color:#000000;
+.el-progress-bar__innerText{
+  color:#000000!important;
 }
 
 .card-container {
