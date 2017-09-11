@@ -67,10 +67,10 @@ export function getSourceInfo(type, id) {
   });
 }
 
-export function getSourceCol(type, param, field, group) {
+export function getSourceCol(type, param, field, group, search) {
   return fetch({
     url: `index.php?s=/Api/Stat/getCol`,
     method: 'get',
-    params: { type, field, group, param }
+    params: { type, field, group, param, search }
   });
 }

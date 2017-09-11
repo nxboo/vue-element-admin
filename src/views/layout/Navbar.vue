@@ -53,6 +53,9 @@
         'baseUrl'
       ])
     },
+
+    mounted() {
+    },
     methods: {
       toggleSideBar() {
         this.$store.dispatch('ToggleSideBar')

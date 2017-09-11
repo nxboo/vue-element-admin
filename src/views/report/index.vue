@@ -133,19 +133,19 @@ export default {
     search() {
       this.fetchData();
     },
-    edit(catId) {
-      this.$router.push('edit/' + catId);
+    edit(reportId) {
+      this.$router.push('edit/' + reportId);
     },
-    del(catId) {
+    del(reportId) {
       this.$confirm('删除将不能恢复，您是否确认删除？', '确认', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        catDelete(catId).then(response => {
+        catDelete(reportId).then(response => {
           if (response.code == 0) {
             this.list = lodash.filter(this.list, row => {
-              return row.report_id !== catId;
+              return row.report_id !== reportId;
             });
           }
         });

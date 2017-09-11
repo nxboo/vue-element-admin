@@ -8,7 +8,8 @@ const app = {
     },
     layout: {
       //右侧边栏打开 Msg|Setting|UserInfo
-      rightPanel: ''
+      rightPanel: '',
+      fullScreen: true
     },
     theme: 'default',
     livenewsChannels: Cookies.get('livenewsChannels') || '[]',
@@ -39,6 +40,12 @@ const app = {
       else
         state.layout.rightPanel = payload.panel;
     },
+    TOGGLE_FULL_SCREEN:  (state, payload) => {
+      if (typeof payload.fullScreen!=='undefined')
+        state.layout.fullScreen = payload.fullScreen;
+      else
+        state.layout.fullScreen = !state.layout.fullScreen;
+    },
     SET_LIVENEWS_CHANNELS: (status, channels) => {
       status.livenewsChannels = JSON.stringify(channels);
       Cookies.set('livenewsChannels', JSON.stringify(channels));
@@ -64,9 +71,13 @@ const app = {
       commit('TOGGLE_SIDEBAR')
     },
     ToggleRightPanel: ({ commit }, panel) => {
-      console.log(panel);
       commit('TOGGLE_RIGHT_PANEL', {
         panel: panel
+      });
+    },
+    ToggleFullScreen: ({ commit }, fullScreen) => {
+      commit('TOGGLE_FULL_SCREEN', {
+        fullScreen: fullScreen
       });
     },
     setTheme: ({ commit }, theme) => {
