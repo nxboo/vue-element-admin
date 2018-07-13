@@ -2,7 +2,7 @@ import Cookies from 'js-cookie';
 
 const app = {
   state: {
-    baseUrl: 'http://ophwtest.yoyo-corp.com/',
+    baseUrl: 'http://optest.philm.cc/',
     sidebar: {
       opened: !+Cookies.get('sidebarStatus')
     },

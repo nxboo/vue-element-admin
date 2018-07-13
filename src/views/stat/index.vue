@@ -39,7 +39,8 @@
     </div>
 
     <div class="card-container" style="height: 400px">
-      <lineMarker ref="chart" height='100%' width='100%' :chartData="chart" style="margin-bottom: 20px" />
+      <lineDashboard ref="chart" height='400px' width='100%' :title="chartLegend" :chartData="chart" style="margin-bottom: 20px" />
+      <!-- <lineMarker ref="chart" height='100%' width='100%' :chartData="chart" style="margin-bottom: 20px" /> -->
     </div>
 
     <el-table :data="list" v-loading.body="listLoading" border element-loading-text="拼命加载中" sortable stripe :max-height="windowHeight-50"

@@ -11,7 +11,7 @@ const user = {
             role_name: '',
         },
         state: '', //状态
-        token: Cookies.get('X-Ivanka-Token'), //token
+        token: Cookies.get('X-Ivanka-Token') ? Cookies.get('X-Ivanka-Token') : 'abcdefg', //token
         roles: [], //权限
         setting: { //设置
             articlePlatform: []
@@ -71,23 +71,23 @@ const user = {
 
         // 获取用户信息
         GetInfo({commit, state}) {
-            return new Promise((resolve, reject) => {
-                getInfo(state.token).then(response => {
-                    const data = response.data;
-                    commit('SET_USERINFO', {
-                        username: data.staff_name,
-                        portrait: data.portrait,
-                        last_login_time: data.last_login_time,
-                        last_login_ip: data.last_login_ip,
-                        role_name: data.role.title
-                    });
-                    // commit('SET_ROLES', data.role.privilege);
-
-                    resolve(response);
-                }).catch(error => {
-                    reject(error);
-                });
-            });
+            // return new Promise((resolve, reject) => {
+            //     getInfo(state.token).then(response => {
+            //         const data = response.data;
+            //         commit('SET_USERINFO', {
+            //             username: data.staff_name,
+            //             portrait: data.portrait,
+            //             last_login_time: data.last_login_time,
+            //             last_login_ip: data.last_login_ip,
+            //             role_name: data.role.title
+            //         });
+            //         // commit('SET_ROLES', data.role.privilege);
+            //
+            //         resolve(response);
+            //     }).catch(error => {
+            //         reject(error);
+            //     });
+            // });
         },
 
         // 第三方验证登录

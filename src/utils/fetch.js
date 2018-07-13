@@ -5,10 +5,12 @@ import router from '../router';
 
 export default function _fetch(options) {
   return new Promise((resolve, reject) => {
+
     const instance = axios.create({
       baseURL: process.env.BASE_API,
       timeout: 1000,
-      headers: { 'X-Ivanka-Token': store.getters.token }
+      headers: { 'X-Ivanka-Token': store.getters.token },
+      withCredentials: true,
     });
 
 
@@ -39,6 +41,8 @@ export default function _fetch(options) {
         resolve(res);
       })
       .catch(error => {
+        console.log('xxxx');
+        console.log(process.env);
         Message({
           message: '发生异常错误,请刷新页面重试,或联系程序员',
           type: 'error',
@@ -76,14 +80,15 @@ export default function _fetch(options) {
 export function fetch(options) {
   return new Promise((resolve, reject) => {
 
+    console.log(process.env);
     const instance = axios.create({
       baseURL: process.env.BASE_API,
-      timeout: 5000,
+      timeout: 50000,
+      withCredentials: true,
       headers: {
         // 'Content-Type': 'application/x-www-form-urlencoded',
         'X-Ivanka-Token': store.getters.token
       },
-
 
       transformRequest: [function transformRequest(data, headers) {
         if(typeof data=="object"){
@@ -112,16 +117,16 @@ export function fetch(options) {
 
           // 通用错误，集中处理
           if (res.code < 0) {
-            Message({
-              message: res.msg,
-              type: 'error',
-              duration: 5 * 1000
-            });
+            // Message({
+            //   message: res.msg,
+            //   type: 'error',
+            //   duration: 5 * 1000
+            // });
 
             // 登出
-            store.dispatch('FedLogOut').then(() => {
-              router.push({ path: '/login' })
-            });
+            // store.dispatch('FedLogOut').then(() => {
+            //   router.push({ path: '/login' })
+            // });
 
           }
           reject(res);

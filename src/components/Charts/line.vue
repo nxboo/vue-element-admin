@@ -11,7 +11,7 @@
     require('echarts/lib/component/markPoint');
     require('echarts/lib/component/tooltip');
     export default {
-      name: 'lineChart',
+      name: 'lineDashboard',
       props: {
         className: {
           type: String,

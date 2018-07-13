@@ -10,8 +10,9 @@
     require('echarts/lib/component/tooltip');
     require('echarts/lib/component/title');
     require('echarts/lib/component/legend');
+
     export default {
-        name: 'barPercent',
+        name: 'lineDashboard',
         props: {
             className: {
                 type: String,
@@ -43,11 +44,8 @@
         },
         mounted() {
             this.$on('init', ()=>{
-                console.log('init');
                 this.initChart();
             });
-
-
         },
         methods: {
             initChart() {
@@ -60,14 +58,8 @@
                     title: {
                         text: this.title
                     },
-                    tooltip: {
-                        trigger: 'axis',
-                        axisPointer: {
-                            type: 'cross',
-                            label: {
-                                backgroundColor: '#6a7985'
-                            }
-                        }
+                    tooltip : {
+                        trigger: 'axis'
                     },
                     legend: this.chartData.legend,
                     toolbox: {
@@ -81,10 +73,10 @@
                         bottom: '3%',
                         containLabel: true
                     },
-                    xAxis: this.chartData.xAxis,
-                    yAxis: [
+                    xAxis : this.chartData.xAxis,
+                    yAxis : [
                         {
-                            type: 'value'
+                            type : 'value'
                         }
                     ],
                     series: this.chartData.series
